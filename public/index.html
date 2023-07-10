@@ -1,1 +1,97 @@
-Hello World.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to TreeNFT</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://threejs.org/build/three.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    /* Add custom styles here */
+    body {
+      background-color: #f8f9fa; /* Light gray background */
+    }
+    .content-container {
+      background-color: #ffffff; /* White background */
+      padding: 20px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-2">
+    <nav class="navbar bg-white navbar-light">
+      <div class="container-fluid">
+        <span class="navbar-brand m-0 h4 fw-bold">TreeNFT</span>
+        <button class="getStartedButton btn btn-success" >Get Started</button>
+      </div>
+    </nav>
+
+    <div class="container mt-4 content-container">
+      <h1 class="display-4">Welcome to TreeNFT</h1>
+      <p class="lead">Here you can mint your own tree NFTs. Follow these steps to get started:</p>
+      <ol class="list-group list-group-numbered">
+        <li class="list-group-item">Connect your Celo wallet.</li>
+        <li class="list-group-item">Mint a new tree by filling out the form.</li>
+        <li class="list-group-item">View your minted trees in the table.</li>
+      </ol>
+      <button class="getStartedButton btn btn-success mt-3">Get Started</button>
+    </div>
+    
+
+    <div class="container mt-4 content-container">
+      <h2>Our Progress</h2>
+      <!-- Add your 3D JS functionality and charts here -->
+      <canvas id="myChart"></canvas>
+      
+    </div>
+  </div>
+  <script>
+  
+// Use querySelectorAll to select all elements with the class 'getStartedButton'
+document.querySelectorAll('.getStartedButton').forEach(function(button) {
+  button.addEventListener('click', function() {
+    window.location.href = './intro.html';
+  });
+});
+
+    // Create a chart
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Success', 'Pending'],
+    datasets: [{
+      label: 'TreeNFTs',
+      data: [19, 10],
+      backgroundColor: [
+        'rgba(75, 225, 129, 0.45)',
+        'rgba(54, 162, 235, 0.2)',
+        
+      ],
+      borderColor: [
+        'rgba(75, 225, 129, 1)',
+        'rgba(54, 162, 235, 1)',
+       
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
+
+
+
+</script>
+
+</body>
+
+</html>

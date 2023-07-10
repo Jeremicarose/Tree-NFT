@@ -6,6 +6,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: "development",
   devtool: "cheap-module-eval-source-map",
+  devServer: {
+    historyApiFallback: {
+      index: "/index.html",
+      rewrites: [
+        { from: /^\/intro/, to: "/intro.html" }
+      ]
+    },
+  },
   entry: {
     main: path.resolve(process.cwd(), "src", "main.js")
   },
@@ -13,20 +21,26 @@ module.exports = {
     path: path.resolve(process.cwd(), "docs"),
     publicPath: ""
   },
-	node: {
-   fs: "empty",
-	 net: "empty"
-	},
+  node: {
+    fs: "empty",
+    net: "empty"
+  },
   watchOptions: {
-    // ignored: /node_modules/,
-    aggregateTimeout: 300, // After seeing an edit, wait .3 seconds to recompile
-    poll: 500 // Check for edits every 5 seconds
+    aggregateTimeout: 300,
+    poll: 500
   },
   plugins: [
     new FriendlyErrorsWebpackPlugin(),
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(process.cwd(), "public", "index.html")
+      filename: 'index.html',
+      template: path.resolve(process.cwd(), "public", "index.html"),
+      chunks: ['main']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'intro.html',
+      template: path.resolve(process.cwd(), "public", "intro.html"),
+      chunks: ['main']
     })
   ]
-}
+};

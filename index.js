@@ -1,20 +1,24 @@
-let path = require("path");
-let webpack = require("webpack");
-let webpackDevServer = require("webpack-dev-server");
-let webpackConfig = require("./webpack.config");
+const path = require('path');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const webpackConfig = require('./webpack.config');
 
-let webpackDevServerOptions = {
-  publicPath: "/",
-  contentBase: path.join(process.cwd(), "dist"),
+const webpackDevServerOptions = {
+  contentBase: path.join(process.cwd(), 'docs'),
+  publicPath: '/',
   historyApiFallback: true,
   hot: true,
-  host: "0.0.0.0"
+  host: '0.0.0.0',
 };
 
-webpackDevServer.addDevServerEntrypoints(webpackConfig, webpackDevServerOptions);
-let webpackCompiler = webpack(webpackConfig);
+const compiler = webpack(webpackConfig);
+const devServer = new WebpackDevServer(compiler, webpackDevServerOptions);
 
-let app = new webpackDevServer(webpackCompiler, webpackDevServerOptions);
-
-let port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`App listening on ${port}`));
+const port = process.env.PORT || 3000;
+devServer.listen(port, '0.0.0.0', (err) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(`App listening on http://localhost:${port}`);
+  }
+});
