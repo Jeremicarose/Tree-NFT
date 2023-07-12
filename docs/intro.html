@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TreeNFT</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+    <style>
+      /* Add custom styles here */
+      .alert {
+        display: none; /* Hide alerts by default */
+      }
+      body {
+        background-color: #f8f9fa; /* Light gray background */
+      }
+      .form-container, .table-container {
+        background-color: #ffffff; /* White background */
+        padding: 20px;
+        border-radius: 5px;
+      }
+      .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        display: none; /* Hide by default */
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  
+</head>
+<body>
+  <div class="container mt-2">
+
+    <nav class="navbar bg-white navbar-light">
+      <div class="container-fluid">
+        <span class="navbar-brand m-0 h4 fw-bold"></span>
+        <span class="nav-link border rounded-pill bg-light">
+          <span id="balance">0</span>
+          cUSD
+        </span>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <h1>TreeNFT</h1>
+      <div class="alert alert-success" id="successAlert"></div>
+      <div class="alert alert-danger" id="errorAlert"></div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-container">
+            <h2>Mint a new tree</h2>
+            <form action="/mint" method="post" id="mintForm">
+          <div class="form-group">
+            <label for="species">Species</label>
+            <input type="text" class="form-control" id="species" name="species" required>
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" id="age" name="age" required>
+          </div>
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location" required>
+          </div>
+          <div class="form-group">
+            <label for="proofOfPlant">Proof of plant</label>
+            <input type="text" class="form-control" id="proofOfPlant" name="proofOfPlant" required>
+          </div>
+          <div class="form-group">
+            <label for="proofOfLife">Proof of life</label>
+            <input type="text" class="form-control" id="proofOfLife" name="proofOfLife" required>
+          </div>
+          <button type="submit" class="btn btn-primary" id="mintButton">Mint</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="table-container">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-bordered">
+            <caption>List of minted trees</caption>
+            <thead>
+              <tr>
+                <th>Species</th>
+                <th>Age</th>
+                <th>Location</th>
+                <th>Proof of plant</th>
+                <th>Proof of life</th>
+              </tr>
+            </thead>
+            <tbody id="treeInfoTableBody">
+              <!-- Tree information will be dynamically added here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="loader" id="loader"></div>
+</div>
+</div>
+ 
+
+  <script>
+   
+  </script>
+   <script src="../src/main.js"></script>
+ 
+<script type="text/javascript" src="main.js"></script></body>
+</html>

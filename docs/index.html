@@ -3,78 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TreeNFT</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
+  <title>Welcome to TreeNFT</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://threejs.org/build/three.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    /* Add custom styles here */
+    body {
+      background-color: #f8f9fa; /* Light gray background */
+    }
+    .content-container {
+      background-color: #ffffff; /* White background */
+      padding: 20px;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container mt-2" style="max-width: 72em">
-
+  <div class="container mt-2">
     <nav class="navbar bg-white navbar-light">
       <div class="container-fluid">
-        <span class="navbar-brand m-0 h4 fw-bold"></span>
-        <span class="nav-link border rounded-pill bg-light">
-          <span id="balance">0</span>
-          cUSD
-        </span>
+        <span class="navbar-brand m-0 h4 fw-bold">TreeNFT</span>
+        <button class="getStartedButton btn btn-success" >Get Started</button>
       </div>
     </nav>
+
+    <div class="container mt-4 content-container">
+      <h1 class="display-4">Welcome to TreeNFT</h1>
+      <p class="lead">Here you can mint your own tree NFTs. Follow these steps to get started:</p>
+      <ol class="list-group list-group-numbered">
+        <li class="list-group-item">Connect your Celo wallet.</li>
+        <li class="list-group-item">Mint a new tree by filling out the form.</li>
+        <li class="list-group-item">View your minted trees in the table.</li>
+      </ol>
+      <button class="getStartedButton btn btn-success mt-3">Get Started</button>
     </div>
-  <div class="container">
-    <h1>TreeNFT</h1>
-    <div class="row">
-      <div class="col-md-6">
-        <h2>Mint a new tree</h2>
-        <form action="/mint" method="post" id="mintForm">
-          <div class="form-group">
-            <label for="species">Species</label>
-            <input type="text" class="form-control" id="species" name="species" required>
-          </div>
-          <div class="form-group">
-            <label for="age">Age</label>
-            <input type="number" class="form-control" id="age" name="age" required>
-          </div>
-          <div class="form-group">
-            <label for="location">Location</label>
-            <input type="text" class="form-control" id="location" name="location" required>
-          </div>
-          <div class="form-group">
-            <label for="proofOfPlant">Proof of plant</label>
-            <input type="text" class="form-control" id="proofOfPlant" name="proofOfPlant" required>
-          </div>
-          <div class="form-group">
-            <label for="proofOfLife">Proof of life</label>
-            <input type="text" class="form-control" id="proofOfLife" name="proofOfLife" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Mint</button>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <h2>Trees</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Species</th>
-              <th>Age</th>
-              <th>Location</th>
-              <th>Proof of plant</th>
-              <th>Proof of life</th>
-            </tr>
-          </thead>
-          <tbody id="treeInfoTableBody">
-            <!-- Tree information will be dynamically added here -->
-          </tbody>
-        </table>
-      </div>
+    
+
+    <div class="container mt-4 content-container">
+      <h2>Our Progress</h2>
+      <!-- Add your 3D JS functionality and charts here -->
+      <canvas id="myChart"></canvas>
+      
     </div>
   </div>
- 
-
   <script>
-   
-  </script>
-   <script src="./main.js"></script>
- 
+  
+// Use querySelectorAll to select all elements with the class 'getStartedButton'
+document.querySelectorAll('.getStartedButton').forEach(function(button) {
+  button.addEventListener('click', function() {
+    window.location.href = './intro.html';
+  });
+});
+
+    // Create a chart
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Success', 'Pending'],
+    datasets: [{
+      label: 'TreeNFTs',
+      data: [19, 10],
+      backgroundColor: [
+        'rgba(75, 225, 129, 0.45)',
+        'rgba(54, 162, 235, 0.2)',
+        
+      ],
+      borderColor: [
+        'rgba(75, 225, 129, 1)',
+        'rgba(54, 162, 235, 1)',
+       
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
+
+
+
+</script>
+
 <script type="text/javascript" src="main.js"></script></body>
+
 </html>
