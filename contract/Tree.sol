@@ -23,7 +23,8 @@ contract TreeNFT is Initializable, ERC721EnumerableUpgradeable, OwnableUpgradeab
         mapping (uint256 => Tree) private _treeInfo;
 
         // Event for when new tree NFT is minted
-        event TreeMinted(address indexed owner, uint256 indexed tokenId, string species, uint256 age, string location);
+        event TreeMinted(uint256 indexed tokenId, string species, uint256 age, string location);
+
 
         // Event for when tree age is updated
         event TreeAgeUpdated(address indexed owner, uint256 indexed tokenId, uint256 newAge);
@@ -48,7 +49,7 @@ contract TreeNFT is Initializable, ERC721EnumerableUpgradeable, OwnableUpgradeab
         }
 
         // Mint a new tree NFT
-        function mint(address to, uint256 tokenId, string memory species, uint256 age, string memory location, string memory proofOfPlant, string memory proofOfLife, string memory tokenURI) public onlyOwner {
+        function mint(address to, uint256 tokenId, string calldata species, uint256 age, string calldata location, string calldata proofOfPlant, string calldata proofOfLife, string calldata tokenURI) public onlyOwner {
             _mint(to, tokenId);
             //_setTokenURI(tokenId, tokenURI);
             _setTreeInfo(tokenId, Tree(species, age, location, proofOfPlant, proofOfLife));
@@ -56,11 +57,12 @@ contract TreeNFT is Initializable, ERC721EnumerableUpgradeable, OwnableUpgradeab
         }
 
         // Get the tree information for a given token ID
+
         function getTreeInfo(uint256 tokenId) public view returns (string memory, uint256, string memory, string memory, string memory) {
-            require(_exists(tokenId), "Token ID does not exist");
             Tree memory tree = _treeInfo[tokenId];
             return (tree.species, tree.age, tree.location, tree.proofOfPlant, tree.proofOfLife);
         }
+
 
         // Update the age of a tree for a given token ID
         function updateTreeAge(uint256 tokenId, uint256 newAge) public onlyOwner {
@@ -70,21 +72,21 @@ contract TreeNFT is Initializable, ERC721EnumerableUpgradeable, OwnableUpgradeab
         }
 
     // Update the proof of plant for a given token ID
-    function updateProofOfPlant(uint256 tokenId, string memory newProofOfPlant) public onlyOwner {
+        function updateProofOfPlant(uint256 tokenId, string calldata newProofOfPlant) public onlyOwner {
         require(_exists(tokenId), "Token ID does not exist");
         _treeInfo[tokenId].proofOfPlant = newProofOfPlant;
         emit TreeProofOfPlantUpdated(ownerOf(tokenId), tokenId, newProofOfPlant);
     }
 
     // Update the proof of life for a given token ID
-    function updateProofOfLife(uint256 tokenId, string memory newProofOfLife) public onlyOwner {
+        function updateProofOfLife(uint256 tokenId, string calldata newProofOfLife) public onlyOwner {
         require(_exists(tokenId), "Token ID does not exist");
         _treeInfo[tokenId].proofOfLife = newProofOfLife;
         emit TreeProofOfLifeUpdated(ownerOf(tokenId), tokenId, newProofOfLife);
     }
 
     // Update the species of a tree for a given token ID
-    function updateSpecies(uint256 tokenId, string memory newSpecies) public onlyOwner {
+        function updateSpecies(uint256 tokenId, string calldata newSpecies) public onlyOwner {
         require(_exists(tokenId), "Token ID does not exist");
         _treeInfo[tokenId].species = newSpecies;
         emit TreeSpeciesUpdated(ownerOf(tokenId), tokenId, newSpecies);
