@@ -4,7 +4,7 @@ const { newKitFromWeb3 } = require('@celo/contractkit');
 let contractInstance;
 
 const ERC20_DECIMALS = 18
-const TNContractAddress = "0x75F388055b715015f23be42f70B4dffB0eaE2Fc5";
+const TNContractAddress = "0x0cc968a21B00F76407F167b0d4D9EAE893FF9FbE";
 
 let kit
 const connectCeloWallet = async function () {
