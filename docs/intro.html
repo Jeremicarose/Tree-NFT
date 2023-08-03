@@ -33,26 +33,7 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    .social-media-buttons {
-      display: flex;
-      gap: 10px;
-    }
-    .social-media-buttons a {
-      display: inline-flex;
-      align-items: center;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-    }
-    .social-media-buttons .facebook-button {
-      background-color: #4267B2;
-    }
-    .social-media-buttons .twitter-button {
-      background-color: #1DA1F2;
-    }
   </style>
-  
 </head>
 <body>
   <div class="container mt-2">
@@ -112,7 +93,6 @@
                     <th>Location</th>
                     <th>Proof of plant</th>
                     <th>Proof of life</th>
-                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody id="treeInfoTableBody">
@@ -126,11 +106,32 @@
       <div class="loader" id="loader"></div>
     </div>
   </div>
+  
+  <!-- Add the social media share modal -->
+  <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="shareModalLabel">Share Your Minted Tree</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Would you like to share your newly minted tree on social media?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Thanks</button>
+          <button type="button" class="btn btn-primary" id="shareTreeButton">Share Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Social Media Sharing JavaScript -->
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0" nonce="YOUR_NONCE"></script>
-  <script async defer crossorigin="anonymous" src="https://platform.twitter.com/widgets.js" nonce="YOUR_NONCE"></script>
-
+  <script>
+   
+  </script>
   <script src="../src/main.js"></script>
-</body>
+ 
+<script type="text/javascript" src="main.js"></script></body>
 </html>
