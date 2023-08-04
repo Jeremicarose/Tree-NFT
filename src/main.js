@@ -3,7 +3,7 @@ const TreeNFT = require("../contract/Tree.abi.json");
 const { newKitFromWeb3 } = require('@celo/contractkit');
 let contractInstance;
 
-const ERC20_DECIMALS = 18
+const ERC20_DECIMALS = 18;
 const TNContractAddress = "0x0cc968a21B00F76407F167b0d4D9EAE893FF9FbE";
 
 let kit
@@ -38,7 +38,6 @@ const connectCeloWallet = async function () {
 const mintTree = async (event) => {
   event.preventDefault();
 
-  let to = kit.defaultAccount; // Set the 'to' parameter to the address that initialized the contract
   let species = document.querySelector('#species').value
   let age = document.querySelector('#age').value
   let location = document.querySelector('#location').value
@@ -48,11 +47,11 @@ const mintTree = async (event) => {
 
   document.querySelector('#mintButton').textContent = 'Minting...';
   try {
-    const tx = await contractInstance.methods.mint(to, species, age, location, proofOfPlant, proofOfLife, tokenURI).send({from: kit.defaultAccount});
+    const tx = await contractInstance.methods.mint(kit.defaultAccount, species, age, location, proofOfPlant, proofOfLife, tokenURI).send({from: kit.defaultAccount});
     console.log(tx);
     document.querySelector('#mintButton').textContent = 'Mint';
     document.querySelector('#successAlert').style.display = 'block';
-    document.querySelector('#successAlert').textContent = 'Tree successfully minted! ' + to;
+    document.querySelector('#successAlert').textContent = 'Tree successfully minted! ' + kit.defaultAccount;
     await loadTrees();
   } catch (error) {
     console.error(error);
