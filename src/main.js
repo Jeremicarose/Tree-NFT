@@ -6,34 +6,40 @@ let contractInstance;
 const ERC20_DECIMALS = 18;
 const TNContractAddress = "0x0cc968a21B00F76407F167b0d4D9EAE893FF9FbE";
 
-let kit
+let kit;
+let isInitialized = false; // Flag to check if contract is already initialized
+
 const connectCeloWallet = async function () {
-  if (window.celo) {
+  if (window.celo && !isInitialized) { // Check if Celo wallet exists and contract is not already initialized
     try {
-      await window.celo.enable()
+      await window.celo.enable();
 
-      const web3 = new Web3(window.celo)
-      kit = newKitFromWeb3(web3)
+      const web3 = new Web3(window.celo);
+      kit = newKitFromWeb3(web3);
 
-      const accounts = await kit.web3.eth.getAccounts()
+      const accounts = await kit.web3.eth.getAccounts();
       if (accounts.length === 0) {
-        throw new Error('No account found')
+        throw new Error('No account found');
       }
-      kit.defaultAccount = accounts[0]
+      kit.defaultAccount = accounts[0];
 
       contractInstance = new kit.web3.eth.Contract(
         TreeNFT,
         TNContractAddress
       );
-      await contractInstance.methods.initialize().send({from: kit.defaultAccount});
 
+      // Set the isInitialized flag to true after successful initialization
+      isInitialized = true;
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   } else {
-    console.log("Please install the CeloExtensionWallet.")
+    console.log("Please install the CeloExtensionWallet or contract is already initialized.");
   }
 }
+
+// Rest of the code remains unchanged...
+
 
 const mintTree = async (event) => {
   event.preventDefault();
