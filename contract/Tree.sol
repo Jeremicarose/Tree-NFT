@@ -2,7 +2,7 @@
 pragma solidity ^0.8.2;
 
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+//import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 // Import the ERC721EnumerableUpgradeable contract
@@ -12,7 +12,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721Enumer
 contract TreeNFT is
     Initializable,
     ERC721EnumerableUpgradeable,
-    OwnableUpgradeable
+  
 {
     // Struct for storing tree information
     struct Tree {
@@ -116,7 +116,7 @@ contract TreeNFT is
     }
 
     // Update the age of a tree for a given token ID
-    function updateTreeAge(uint256 tokenId, uint256 newAge) public onlyOwner {
+    function updateTreeAge(uint256 tokenId, uint256 newAge) public  {
         require(_exists(tokenId), "Token ID does not exist");
         _treeInfo[tokenId].age = newAge;
         emit TreeAgeUpdated(ownerOf(tokenId), tokenId, newAge);
@@ -126,7 +126,7 @@ contract TreeNFT is
     function updateProofOfPlant(
         uint256 tokenId,
         string calldata newProofOfPlant
-    ) public onlyOwner {
+    ) public  {
         require(_exists(tokenId), "Token ID does not exist");
         _treeInfo[tokenId].proofOfPlant = newProofOfPlant;
         emit TreeProofOfPlantUpdated(
@@ -139,7 +139,7 @@ contract TreeNFT is
     // Update the proof of life for a given token ID
     function updateProofOfLife(uint256 tokenId, string calldata newProofOfLife)
         public
-        onlyOwner
+        
     {
         require(_exists(tokenId), "Token ID does not exist");
         _treeInfo[tokenId].proofOfLife = newProofOfLife;
